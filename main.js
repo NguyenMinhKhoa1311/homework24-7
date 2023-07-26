@@ -28,6 +28,24 @@ let eyeHeight = 80;
 let alpha = 0.1;
 let vt = 2;
 let gt = 2;
+let isOn = false
+document.addEventListener("click",()=>{
+  const audio = document.getElementById("myAudio");
+  audio.play();
+  if(isOn){
+    isOn=false;
+  }
+  else{
+    isOn=true;
+    setTimeout(()=>{
+      isOn = false
+    },1700);
+  }
+  console.log(isOn)
+
+
+})
+
 
 function draw() {
   setInterval(() => {
@@ -41,7 +59,7 @@ function draw() {
     delta = Date.now() - then;
     let fps = 1000 / delta;
     then = Date.now();
-    console.log(vt);
+    // console.log(vt);
 
     ctx.beginPath();
     ctx.clearRect(0, 0, width, height);
@@ -154,6 +172,14 @@ function draw() {
     ctx.fillStyle = "#174997";
     ctx.fill();
     ctx.closePath();
+    if(isOn)
+    {
+      ctx.beginPath();
+      ctx.arc(420, 425, 30, 0, 2* Math.PI);
+      ctx.fillStyle = "red";
+      ctx.fill();
+      ctx.closePath();
+    }
 
     //thân quần
     ctx.beginPath();
@@ -255,7 +281,7 @@ function draw() {
 
 
 
-    console.log(eye.currentY, eye.targetY);
+    // console.log(eye.currentY, eye.targetY);
 
     if (eye.currentX < eye.targerX) {
       eye.currentX += 1;
